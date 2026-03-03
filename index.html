@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G*YS</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-start; /* inizio da sinistra */
+    align-items: center;
+    padding-left: 0px; /* margine piccolo dalla sinistra */
+}
+
+.board {
+    display: flex;
+    justify-content: space-between; /* prima a sinistra, ultima a destra */
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 350px; 
+    height: 550px; 
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.card:hover {
+    transform: scale(1.07) translateY(-10px);
+}
+
+.card img,
+.card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    transform: scale(1); 
+}
+</style>
+</head>
+<body>
+
+<div class="board">
+
+    <div class="card" onclick="toggleMedia(this)">
+        <img src="Immagini/flavio.png" />
+        <video src="Video/flavio.mp4"></video>
+    </div>
+
+    <div class="card" onclick="toggleMedia(this)">
+        <img src="Immagini/manu.png" />
+        <video src="Video/manu.mp4"></video>
+    </div>
+
+    <div class="card" onclick="toggleMedia(this)">
+        <img src="Immagini/momo.jpeg" />
+        <video src="Video/momo.mp4"></video>
+    </div>
+
+</div>
+
+<script>
+function toggleMedia(card) {
+    const img = card.querySelector("img");
+    const video = card.querySelector("video");
+
+    if (video.style.display === "block") {
+        resetToImage(img, video);
+    } else {
+        img.style.display = "none";
+        video.style.display = "block";
+        video.play();
+
+        video.onended = () => {
+            resetToImage(img, video);
+        };
+    }
+}
+
+function resetToImage(img, video) {
+    video.pause();
+    video.currentTime = 0;
+    video.style.display = "none";
+    img.style.display = "block";
+}
+</script>
+
+</body>
+</html>
