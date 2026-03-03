@@ -11,22 +11,26 @@ body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
     display: flex;
-    justify-content: flex-start; /* inizio da sinistra */
+    justify-content: center; /* centra la board su schermi piccoli */
     align-items: center;
-    padding-left: 0px; /* margine piccolo dalla sinistra */
+    padding: 20px; /* piccolo padding laterale */
 }
 
 .board {
     display: flex;
-    justify-content: space-between; /* prima a sinistra, ultima a destra */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    flex-wrap: wrap; /* permette alle card di andare a capo */
+    gap: 20px; /* spazio tra le card */
     box-sizing: border-box;
 }
 
 .card {
-    width: 350px; 
-    height: 550px; 
+    width: 100%;
+    max-width: 350px; 
+    height: auto; /* lascia che l’altezza segua il video/immagine */
+    aspect-ratio: 7/11; /* mantiene proporzioni simili a 350x550 */
     overflow: hidden;
     cursor: pointer;
     position: relative;
@@ -51,7 +55,23 @@ body {
     top: 0;
     left: 0;
     display: none;
-    transform: scale(1); 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* MEDIA QUERY PER CELLULARE */
+@media (max-width: 600px) {
+    .board {
+        flex-direction: column; /* le card vanno in colonna */
+        gap: 15px;
+        align-items: center;
+    }
+
+    .card {
+        max-width: 90vw; /* quasi tutta la larghezza dello schermo */
+        aspect-ratio: 7/11; /* mantiene proporzioni */
+    }
 }
 </style>
 </head>
