@@ -17,11 +17,11 @@ body {
 }
 
 .board {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    flex-wrap: wrap; /* permette alle card di andare a capo */
     gap: 20px; /* spazio tra le card */
     box-sizing: border-box;
 }
@@ -69,7 +69,7 @@ body {
 /* MEDIA QUERY PER CELLULARE */
 @media (max-width: 600px) {
     .board {
-        flex-direction: column; /* le card vanno in colonna */
+        grid-template-columns: 1fr;/* le card vanno in colonna */
         gap: 15px;
         align-items: center;
     }
@@ -100,7 +100,12 @@ body {
         <video src="Video/momo.mp4"></video>
     </div>
 
+    <div class="card" onclick="toggleMedia(this)">
+        <img src="Immagini/ajten.jpeg" />
+        <video src="Video/ajten.mp4"></video>
+    </div>
 </div>
+
 
 <script>
 function toggleMedia(card) {
